@@ -7,17 +7,14 @@ include  "../config/database.php";
 include  "../objects/products.php";
 
 $database= new Database(); //Instance of new db that I made in Database
-try {
+
     $db = $database->connect();
-} catch (Exception $e) {
-    echo ("Error connecting to the db:").$e->getMessage();
-}
 
 
 $product=new Product($db);  //initializing the product object
 
 $stmt=$product->read(); //read the data from the db
-$num=$stmt->rowCount(); //number of rows in the database
+$num=$stmt->rowCount(); //number of rows in the databases
 
 if ($num>0){   //if we find more than  I record we store it in array
     $product_array=array();

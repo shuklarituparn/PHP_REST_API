@@ -14,7 +14,7 @@ include_once "../objects/products.php";  //creating the product
 include_once "../config/core.php";
 
 $database= new Database();
-$db=$database->connect();  //connecting to the database
+$db=$database->connect();  //connecting to the databases
 $product= new Product($db); //passing the db instance
 
 

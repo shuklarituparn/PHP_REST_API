@@ -5,7 +5,6 @@ services:
 
   db:
     image: mysql
-
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -16,8 +15,8 @@ services:
     ports:
         - "3306:3306"
     volumes:
-      - ./database/volume_mysql:/var/lib/mysql
-    # volume for all the database data
+      - ./databases/volume_mysql:/var/lib/mysql
+    # volume for all the databases data
 
 
   adminer:
@@ -25,5 +24,13 @@ services:
     restart: always
     ports:
       - 8080:8080
+
+  php:
+    container_name: phpApp
+    build: .
+    ports:
+      - "8086:80"
+    depends_on:
+      - db
 
 # https://hub.docker.com/_/mysql  can always refer in doubt

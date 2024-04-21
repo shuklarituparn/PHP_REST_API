@@ -77,15 +77,19 @@ class Product{
     }
     function readOne()
     {
-        $query="
-        SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created 
-        
+        $query = "
+        SELECT 
+            c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
         FROM
-        ".$this->table_name." p
+            " . $this->table_name . " p
         LEFT JOIN 
-            categories c on p.category_id=c.id
-            WHERE p.id=?
-            LIMIT=0,1";
+            categories c 
+        ON 
+            p.category_id = c.id
+        WHERE 
+            p.id = ?
+        LIMIT 1
+    ";
 
 
         $stmt=$this->conn->prepare($query);
@@ -181,7 +185,6 @@ class Product{
 
     public function readPaging($from_record_num, $records_per_page)
     {
-        // выборка
         $query = "SELECT
             c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
         FROM
@@ -201,7 +204,6 @@ class Product{
         return $stmt;
     }
 
-    // данный метод возвращает кол-во товаров
     public function count()
     {
         $query = "SELECT COUNT(*) as total_rows FROM " . $this->table_name . "";
