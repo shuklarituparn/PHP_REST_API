@@ -33,11 +33,11 @@ if(
     $product->created=date("Y-M-D H:i:s"); //year month date, hours minutes seconds
 
     if ($product->create()){
-        http_response_code(code);
+        http_response_code(201);
         return json_encode(array("message"=>"product successfully created"),JSON_UNESCAPED_UNICODE);
     }else{
         http_response_code(503); //server unavailable
-        return json_decode(array("message"=>"server unable"),JSON_UNESCAPED_UNICODE);
+        return json_encode(array("message"=>"server unable"),JSON_UNESCAPED_UNICODE);
     }
 
 }else{
