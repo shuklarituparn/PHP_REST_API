@@ -1,0 +1,29 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: mysql
+
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: sample-rest-api
+      MYSQL_USER: rituparn
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: example
+    ports:
+        - "3306:3306"
+    volumes:
+      - ./database/volume_mysql:/var/lib/mysql
+    # volume for all the database data
+
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+# https://hub.docker.com/_/mysql  can always refer in doubt
