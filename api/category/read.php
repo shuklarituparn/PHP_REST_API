@@ -8,7 +8,10 @@ include_once "../config/database.php";
 include_once "../objects/category.php";
 
 $database = new Database();
-$db = $database->connect();
+try {
+    $db = $database->connect();
+} catch (Exception $e) {
+}
 
 $category = new Category($db);
 
